@@ -363,13 +363,27 @@
 
     /* ── ABOUT STRIP ── */
     .about-strip {
-      margin: 96px 40px 0;
+      margin: 0;
       display: grid;
       grid-template-columns: 1fr 1.2fr;
       gap: 80px;
       align-items: center;
-      padding-bottom: 96px;
+      padding: 96px 80px;
       border-bottom: 0.5px solid var(--border);
+      position: relative;
+    }
+
+    .about-strip::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(10,8,5,0.75);
+      z-index: 0;
+    }
+
+    .about-strip > * {
+      position: relative;
+      z-index: 1;
     }
 
     .about-tag {
@@ -719,7 +733,7 @@
   </section>
 
   <!-- ABOUT -->
-  <section class="about-strip">
+  <section class="about-strip" style="background-image: url('FONDO.jpg'); background-size: cover; background-position: center; position: relative;">
     <div class="about-text">
       <p class="about-tag">— about</p>
       <h2 class="about-heading">
