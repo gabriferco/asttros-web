@@ -600,7 +600,7 @@
         display: flex;
         flex-direction: column;
         padding: 56px 24px;
-        gap: 20px;
+        gap: 24px;
         margin: 0;
       }
       .about-heading-block {
@@ -610,20 +610,23 @@
       }
       .about-heading {
         text-align: left !important;
+        font-size: clamp(22px, 5vw, 28px);
+        margin-bottom: 0;
       }
       .about-visual {
         order: 2;
         display: block;
-        width: 70%;
-        margin: 0;
-        aspect-ratio: auto;
+        width: 72%;
+        aspect-ratio: unset !important;
+        position: static !important;
+      }
+      .about-visual img {
+        width: 100%;
+        height: auto;
+        display: block;
       }
       .about-text {
         order: 3;
-      }
-      .about-heading {
-        font-size: clamp(22px, 5vw, 28px);
-        margin-bottom: 0;
       }
       .about-body {
         font-size: 14px;
