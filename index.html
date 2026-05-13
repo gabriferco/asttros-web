@@ -577,7 +577,26 @@
         margin: 64px 20px 0;
         padding-bottom: 64px;
       }
-      .about-visual { display: none; }
+      .about-visual { 
+        display: block;
+        width: 80%;
+        margin: 0 auto 32px;
+        aspect-ratio: auto;
+      }
+      .about-strip {
+        grid-template-columns: 1fr;
+        gap: 0;
+        padding: 64px 24px;
+      }
+      .about-text {
+        order: 2;
+      }
+      .about-visual {
+        order: 1;
+      }
+      .about-heading {
+        font-size: clamp(28px, 7vw, 36px);
+      }
       .contact-strip {
         flex-direction: column;
         gap: 36px;
