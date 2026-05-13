@@ -757,22 +757,22 @@
       }
     });
 
-    // Lazy load Vimeo previews on hover — only start iframe src when hovering
-    // to avoid loading all iframes at once
+    // On desktop: preload all previews on page load
+    // On mobile: remove previews entirely, tap goes straight to page
+    const isMobile = window.matchMedia('(max-width: 768px)').matches;
+
     document.querySelectorAll('.film-card').forEach(card => {
       const preview = card.querySelector('.film-preview');
       if (!preview) return;
-      const iframe = preview.querySelector('iframe');
-      const src = iframe.getAttribute('src');
-      iframe.removeAttribute('src');
 
-      let loaded = false;
-      card.addEventListener('mouseenter', () => {
-        if (!loaded) {
-          iframe.setAttribute('src', src);
-          loaded = true;
-        }
-      });
+      if (isMobile) {
+        // Remove preview on mobile - not needed
+        preview.remove();
+      } else {
+        // Preload iframe src immediately on desktop
+        const iframe = preview.querySelector('iframe');
+        // src already set, nothing to do - Vimeo loads in background
+      }
     });
   </script>
 
