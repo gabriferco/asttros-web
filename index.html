@@ -757,8 +757,6 @@
       }
     });
 
-    // Mobile: remove previews, tap goes straight to page
-    // Desktop: lazy load on hover with small delay buffer
     const isMobile = window.matchMedia('(max-width: 768px)').matches;
 
     document.querySelectorAll('.film-card').forEach(card => {
@@ -774,7 +772,6 @@
       }
 
       let loaded = false;
-      // Preload on mouseenter with a tiny head start
       card.addEventListener('mouseenter', () => {
         if (!loaded) {
           iframe.setAttribute('src', src);
@@ -782,15 +779,6 @@
         }
       });
     });
-
-    // On desktop, preload the FIRST card only (featured) since it is most visible
-    if (!isMobile) {
-      const firstPreview = document.querySelector('.film-card--featured .film-preview iframe');
-      if (firstPreview) {
-        const src = firstPreview.getAttribute('data-src') || firstPreview.getAttribute('src');
-        if (!firstPreview.getAttribute('src')) firstPreview.setAttribute('src', src);
-      }
-    }
   </script>
 
 </body>
