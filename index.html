@@ -250,7 +250,7 @@
 
     .film-thumb {
       position: absolute;
-      inset: 0;
+      inset: -1px;
       background-size: cover;
       background-position: center;
       transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
@@ -362,12 +362,12 @@
 
     /* ── ABOUT STRIP ── */
     .about-strip {
-      margin: 96px 40px 0;
+      margin: 0;
       display: grid;
-      grid-template-columns: 1fr 1.2fr;
-      gap: 80px;
-      align-items: center;
-      padding-bottom: 96px;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: start;
+      padding: 96px 10% 96px;
       border-bottom: 0.5px solid var(--border);
     }
 
@@ -382,11 +382,11 @@
 
     .about-heading {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(32px, 3vw, 48px);
+      font-size: clamp(36px, 4vw, 58px);
       font-weight: 300;
-      line-height: 1.1;
+      line-height: 1.05;
       color: var(--text);
-      margin-bottom: 28px;
+      margin-bottom: 36px;
     }
 
     .about-heading em {
@@ -395,12 +395,12 @@
     }
 
     .about-body {
-      font-size: 14px;
-      line-height: 1.8;
+      font-size: 15px;
+      line-height: 1.85;
       color: var(--text-dim);
       font-weight: 300;
-      margin-bottom: 32px;
-      max-width: 420px;
+      margin-bottom: 24px;
+      max-width: 100%;
     }
 
     .about-cta {
