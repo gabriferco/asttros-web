@@ -757,23 +757,40 @@
       }
     });
 
-    // On desktop: preload all previews on page load
-    // On mobile: remove previews entirely, tap goes straight to page
+    // Mobile: remove previews, tap goes straight to page
+    // Desktop: lazy load on hover with small delay buffer
     const isMobile = window.matchMedia('(max-width: 768px)').matches;
 
     document.querySelectorAll('.film-card').forEach(card => {
       const preview = card.querySelector('.film-preview');
       if (!preview) return;
+      const iframe = preview.querySelector('iframe');
+      const src = iframe.getAttribute('src');
+      iframe.removeAttribute('src');
 
       if (isMobile) {
-        // Remove preview on mobile - not needed
         preview.remove();
-      } else {
-        // Preload iframe src immediately on desktop
-        const iframe = preview.querySelector('iframe');
-        // src already set, nothing to do - Vimeo loads in background
+        return;
       }
+
+      let loaded = false;
+      // Preload on mouseenter with a tiny head start
+      card.addEventListener('mouseenter', () => {
+        if (!loaded) {
+          iframe.setAttribute('src', src);
+          loaded = true;
+        }
+      });
     });
+
+    // On desktop, preload the FIRST card only (featured) since it is most visible
+    if (!isMobile) {
+      const firstPreview = document.querySelector('.film-card--featured .film-preview iframe');
+      if (firstPreview) {
+        const src = firstPreview.getAttribute('data-src') || firstPreview.getAttribute('src');
+        if (!firstPreview.getAttribute('src')) firstPreview.setAttribute('src', src);
+      }
+    }
   </script>
 
 </body>
