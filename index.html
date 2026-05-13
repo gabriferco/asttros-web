@@ -369,6 +369,10 @@
       border-bottom: 0.5px solid var(--border);
     }
 
+    .about-heading-block {
+      display: contents;
+    }
+
     .about-tag {
       font-size: 9px;
       letter-spacing: 0.28em;
@@ -587,12 +591,17 @@
         grid-template-columns: 1fr;
         gap: 0;
         padding: 64px 24px;
+        grid-template-rows: auto auto auto;
       }
-      .about-text {
-        order: 2;
+      .about-heading-block {
+        order: 1;
+        grid-column: 1;
       }
       .about-visual {
-        order: 1;
+        order: 2;
+      }
+      .about-text {
+        order: 3;
       }
       .about-heading {
         font-size: clamp(28px, 7vw, 36px);
@@ -736,12 +745,14 @@
 
   <!-- ABOUT -->
   <section class="about-strip" id="about">
-    <div class="about-text">
+    <div class="about-heading-block">
       <p class="about-tag">— about</p>
       <h2 class="about-heading">
         Gabri &amp; Jose.<br>
         <em>Two brothers behind the camera.</em>
       </h2>
+    </div>
+    <div class="about-text">
       <p class="about-body">We are brothers, and since childhood, cinema has been our meeting point. We grew up playing, inventing, and exploring stories with whatever we had at hand: from a VHS camera to a cassette recorder, always searching for ways to capture what moved us. Our passion for storytelling led us into the world of film and documentary, where we learned to shape narratives not only through technique but also through listening, improvising, and feeling.</p>
       <p class="about-body">That same vision is what we bring to every wedding. We don't simply document a day — we craft it into an authentic, emotional, and cinematic story meant to last for generations.</p>
       <p class="about-body">Each wedding is approached as a unique and personal project. We walk alongside couples who want more than just a memory, creating a visual identity through film and photography that captures their essence.</p>
