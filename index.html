@@ -27,13 +27,14 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
 
-    body {
+    html, body {
       font-family: 'DM Sans', sans-serif;
       background: var(--dark);
       color: var(--text);
       overflow-x: hidden;
       margin: 0;
       padding: 0;
+      width: 100%;
     }
 
     /* ── GRAIN OVERLAY ── */
@@ -193,6 +194,8 @@
     .films-section {
       padding: 0;
       margin: 0;
+      width: 100%;
+      overflow: hidden;
     }
 
     .section-header {
@@ -224,12 +227,8 @@
       gap: 2px;
       padding: 0;
       margin: 0;
-      width: 100vw;
-      position: relative;
-      left: 50%;
-      right: 50%;
-      margin-left: -50vw;
-      margin-right: -50vw;
+      width: 100%;
+      overflow: hidden;
     }
 
     /* Loreto y Raúl — full width featured */
@@ -604,7 +603,7 @@
     <a href="index.html" class="logo">asttros</a>
     <ul class="nav-links">
       <li><a href="#films">films</a></li>
-      <li><a href="about.html">about</a></li>
+      <li><a href="#about">about</a></li>
       <li><a href="contact.html">contact</a></li>
     </ul>
   </nav>
@@ -719,17 +718,17 @@
   </section>
 
   <!-- ABOUT -->
-  <section class="about-strip">
+  <section class="about-strip" id="about">
     <div class="about-text">
       <p class="about-tag">— about</p>
       <h2 class="about-heading">
         Gabri &amp; Jose.<br>
         <em>Two brothers behind the camera.</em>
       </h2>
-      <p class="about-body">
-        Cinema has always been our meeting point. We grew up creating stories with whatever we had — a VHS camera, a cassette recorder, paper, paints, our imagination. Today we bring that same instinct to every wedding: a wedding doc that captures your day honestly, poetically, and entirely as it felt.
-      </p>
-      <a class="about-cta" href="about.html">our story</a>
+      <p class="about-body">We are brothers, and since childhood, cinema has been our meeting point. We grew up playing, inventing, and exploring stories with whatever we had at hand: from a VHS camera to a cassette recorder, always searching for ways to capture what moved us. Our passion for storytelling led us into the world of film and documentary, where we learned to shape narratives not only through technique but also through listening, improvising, and feeling.</p>
+      <p class="about-body">That same vision is what we bring to every wedding. We don't simply document a day — we craft it into an authentic, emotional, and cinematic story meant to last for generations.</p>
+      <p class="about-body">Each wedding is approached as a unique and personal project. We walk alongside couples who want more than just a memory, creating a visual identity through film and photography that captures their essence.</p>
+      <p class="about-body" style="margin-bottom:0">We are inspired by what is real, by adventure, travel, and the unpredictable. We look for poetry and avoid clichés, creating with every couple an auteur-style documentary piece made with soul.</p>
     </div>
     <div class="about-visual">
       <img src="NOSOTROS.png" alt="Gabi y Jose" style="width:100%; height:100%; object-fit:contain; object-position:center;">
@@ -742,7 +741,7 @@
     <span class="footer-logo">asttros</span>
     <ul class="footer-links">
       <li><a href="#films">films</a></li>
-      <li><a href="about.html">about</a></li>
+      <li><a href="#about">about</a></li>
       <li><a href="contact.html">contact</a></li>
       <li><a href="https://instagram.com/__asttros" target="_blank">instagram</a></li>
     </ul>
