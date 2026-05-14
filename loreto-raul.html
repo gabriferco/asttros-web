@@ -240,6 +240,22 @@
       height: 100%;
       border: none;
     }
+    .lightbox-prev, .lightbox-next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 20px;
+      color: var(--text-dimmer);
+      cursor: pointer;
+      padding: 20px;
+      transition: color 0.2s;
+      user-select: none;
+      z-index: 2;
+    }
+    .lightbox-prev { left: 20px; }
+    .lightbox-next { right: 20px; }
+    .lightbox-prev:hover, .lightbox-next:hover { color: var(--yellow); }
+
     .lightbox-title {
       margin-top: 20px;
       font-size: 10px;
@@ -355,7 +371,6 @@
         </div>
         <div class="video-label">
           <strong>Film</strong>
-          9–12 min
         </div>
       </div>
 
@@ -366,7 +381,6 @@
         </div>
         <div class="video-label">
           <strong>Short Film</strong>
-          3–5 min
         </div>
       </div>
 
@@ -377,7 +391,6 @@
         </div>
         <div class="video-label">
           <strong>Teaser</strong>
-          ~1 min
         </div>
       </div>
 
@@ -465,21 +478,21 @@
           <img src="https://vumbnail.com/1065826221.jpg" alt="Film">
           <div class="video-play"><div class="video-play-btn"></div></div>
         </div>
-        <div class="video-label"><strong>Film</strong>9–12 min</div>
+        <div class="video-label"><strong>Film</strong></div>
       </div>
       <div class="video-card" onclick="openLightbox('1065837037', 'short film')">
         <div class="video-thumb">
           <img src="https://vumbnail.com/1065837037.jpg" alt="Short Film">
           <div class="video-play"><div class="video-play-btn"></div></div>
         </div>
-        <div class="video-label"><strong>Short Film</strong>3–5 min</div>
+        <div class="video-label"><strong>Short Film</strong></div>
       </div>
       <div class="video-card" onclick="openLightbox('1065832564', 'teaser')">
         <div class="video-thumb">
           <img src="https://vumbnail.com/1065832564.jpg" alt="Teaser">
           <div class="video-play"><div class="video-play-btn"></div></div>
         </div>
-        <div class="video-label"><strong>Teaser</strong>~1 min</div>
+        <div class="video-label"><strong>Teaser</strong></div>
       </div>
     </div>
   </div>
@@ -498,18 +511,41 @@
   <!-- LIGHTBOX -->
   <div class="lightbox" id="lightbox">
     <span class="lightbox-close" onclick="closeLightbox()">✕ close</span>
+    <span class="lightbox-prev" onclick="prevPhoto()">←</span>
+    <span class="lightbox-next" onclick="nextPhoto()">→</span>
     <div class="lightbox-player" id="lightbox-player"></div>
     <p class="lightbox-title" id="lightbox-title"></p>
   </div>
 
   <script>
+    const photos = [
+      'img/LORETO 1.jpg','img/LORETO 2.jpg','img/LORETO 3.jpg','img/LORETO 4.jpg',
+      'img/LORETO 5.jpg','img/LORETO 6.jpg','img/LORETO 7.jpg','img/LORETO 8.jpg',
+      'img/LORETO 9.jpg','img/LORETO 10.jpg','img/LORETO 11.jpg','img/LORETO 12.jpg',
+      'img/LORETO 13.jpg','img/LORETO 14.jpg','img/LORETO 15.jpg','img/LORETO 16.jpg',
+      'img/LORETO 17.jpg'
+    ];
+    let currentPhoto = -1;
+
     function openPhoto(src) {
-      const lb = document.getElementById('lightbox');
-      const player = document.getElementById('lightbox-player');
-      player.innerHTML = '<img src="' + src + '" style="width:100%;height:100%;object-fit:contain;">';
-      document.getElementById('lightbox-title').textContent = 'loreto & raúl';
-      lb.classList.add('active');
+      currentPhoto = photos.indexOf(src);
+      showPhoto(currentPhoto);
+      document.getElementById('lightbox').classList.add('active');
       document.body.style.overflow = 'hidden';
+    }
+
+    function showPhoto(index) {
+      const player = document.getElementById('lightbox-player');
+      player.innerHTML = '<img src="' + photos[index] + '" style="width:100%;height:100%;object-fit:contain;">';
+      document.getElementById('lightbox-title').textContent = (index + 1) + ' / ' + photos.length;
+    }
+
+    function prevPhoto() {
+      if (currentPhoto > 0) { currentPhoto--; showPhoto(currentPhoto); }
+    }
+
+    function nextPhoto() {
+      if (currentPhoto < photos.length - 1) { currentPhoto++; showPhoto(currentPhoto); }
     }
 
     function openLightbox(id, title) {
@@ -528,6 +564,8 @@
     });
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowRight' && currentPhoto >= 0) nextPhoto();
+      if (e.key === 'ArrowLeft' && currentPhoto >= 0) prevPhoto();
     });
   </script>
 
