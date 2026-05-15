@@ -590,6 +590,22 @@
     }
 
     /* ── RESPONSIVE ── */
+    @media (hover: none) {
+      .film-card:hover .film-thumb {
+        transform: none;
+        filter: brightness(0.8) saturate(0.9);
+      }
+      .film-card:hover .film-overlay {
+        background: linear-gradient(to top, rgba(10,8,5,0.85) 0%, rgba(10,8,5,0.2) 40%, transparent 70%);
+      }
+      .film-card:hover .film-watch {
+        color: var(--text-dim);
+      }
+      .film-card:hover .film-preview {
+        opacity: 0;
+      }
+    }
+
     @media (max-width: 768px) {
       nav { padding: 20px 20px; }
       .nav-links { gap: 24px; }
