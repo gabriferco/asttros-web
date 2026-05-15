@@ -38,7 +38,7 @@
       position: fixed;
       top: 0; left: 0; right: 0;
       z-index: 1000;
-      padding: 28px 40px;
+      padding: 24px 40px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -52,19 +52,9 @@
     .nav-back:hover { color: var(--yellow); }
     .nav-back:hover::before { width: 16px; }
 
-    /* OPTION A — No hero, direct to content */
-    .option-label {
-      padding: 120px 40px 0;
-      font-size: 9px;
-      letter-spacing: 0.28em;
-      text-transform: lowercase;
-      color: var(--yellow);
-      opacity: 0.7;
-    }
-
-    /* WEDDING TITLE */
+    /* HEADER */
     .wedding-header {
-      padding: 24px 40px 56px;
+      padding: 110px 40px 56px;
       border-bottom: 0.5px solid var(--border);
     }
     .wedding-eyebrow {
@@ -86,50 +76,23 @@
       font-size: 10px;
       letter-spacing: 0.2em;
       color: var(--text-dimmer);
-      margin-top: 12px;
+      margin-top: 14px;
     }
-
-    /* OPTION B — Hero image */
-    .wedding-hero {
-      position: relative;
-      aspect-ratio: 4/1;
-      max-height: 50vh;
-      overflow: hidden;
-      display: flex;
-      align-items: flex-end;
-    }
-    .wedding-hero-bg {
-      position: absolute;
-      inset: 0;
-      background-size: cover;
-      background-position: center;
-      filter: brightness(0.65);
-    }
-    .wedding-hero-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(10,8,5,0.85) 0%, transparent 60%);
-    }
-    .wedding-hero-content {
-      position: relative;
-      z-index: 2;
-      padding: 0 40px 48px;
-    }
-    .wedding-hero-content .wedding-eyebrow { margin-bottom: 8px; }
-    .wedding-hero-content .wedding-title { font-size: clamp(40px, 5vw, 68px); }
-
-    .option-divider {
-      padding: 64px 40px 32px;
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      border-top: 0.5px solid var(--border);
-      margin-top: 80px;
-    }
-    .option-divider-line { flex: 1; height: 0.5px; background: var(--border); }
 
     /* VIDEOS */
-    .videos-section { padding: 48px 40px 0; }
+    .videos-section { padding: 56px 40px 0; }
+    .videos-label {
+      font-size: 9px;
+      letter-spacing: 0.28em;
+      text-transform: lowercase;
+      color: var(--text-dimmer);
+      margin-bottom: 28px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .videos-label::after { content: ''; flex: 1; height: 0.5px; background: var(--border); }
+
     .videos-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -141,23 +104,18 @@
       background: #111;
       overflow: hidden;
     }
-    .video-card aspect-ratio { aspect-ratio: 16/9; }
     .video-thumb {
       aspect-ratio: 16/9;
       position: relative;
       overflow: hidden;
     }
     .video-thumb img {
-      width: 100%;
-      height: 100%;
+      width: 100%; height: 100%;
       object-fit: cover;
       filter: brightness(0.75);
       transition: filter 0.3s, transform 0.5s;
     }
-    .video-card:hover .video-thumb img {
-      filter: brightness(0.5);
-      transform: scale(1.03);
-    }
+    .video-card:hover .video-thumb img { filter: brightness(0.5); transform: scale(1.03); }
     .video-play {
       position: absolute;
       inset: 0;
@@ -167,8 +125,7 @@
       z-index: 2;
     }
     .video-play-btn {
-      width: 52px;
-      height: 52px;
+      width: 52px; height: 52px;
       border: 0.5px solid rgba(240,236,228,0.5);
       border-radius: 50%;
       display: flex;
@@ -176,10 +133,7 @@
       justify-content: center;
       transition: border-color 0.2s, background 0.2s;
     }
-    .video-card:hover .video-play-btn {
-      border-color: var(--yellow);
-      background: rgba(245,230,66,0.1);
-    }
+    .video-card:hover .video-play-btn { border-color: var(--yellow); background: rgba(245,230,66,0.1); }
     .video-play-btn::after {
       content: '';
       width: 0; height: 0;
@@ -204,64 +158,7 @@
       color: var(--text);
       font-family: 'Cormorant Garamond', serif;
       font-weight: 300;
-      margin-bottom: 3px;
-    }
-
-    /* LIGHTBOX */
-    .lightbox {
-      display: none;
-      position: fixed;
-      inset: 0;
-      z-index: 9998;
-      background: rgba(10,8,5,0.96);
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-    }
-    .lightbox.active { display: flex; }
-    .lightbox-close {
-      position: absolute;
-      top: 28px; right: 40px;
-      font-size: 10px;
-      letter-spacing: 0.22em;
-      color: var(--text-dimmer);
-      cursor: pointer;
-      text-transform: lowercase;
-      transition: color 0.2s;
-    }
-    .lightbox-close:hover { color: var(--yellow); }
-    .lightbox-player {
-      width: 90vw;
-      max-width: 1200px;
-      aspect-ratio: 16/9;
-    }
-    .lightbox-player iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
-    .lightbox-prev, .lightbox-next {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 20px;
-      color: var(--text-dimmer);
-      cursor: pointer;
-      padding: 20px;
-      transition: color 0.2s;
-      user-select: none;
-      z-index: 2;
-    }
-    .lightbox-prev { left: 20px; }
-    .lightbox-next { right: 20px; }
-    .lightbox-prev:hover, .lightbox-next:hover { color: var(--yellow); }
-
-    .lightbox-title {
-      margin-top: 20px;
-      font-size: 10px;
-      letter-spacing: 0.22em;
-      text-transform: lowercase;
-      color: var(--text-dimmer);
+      margin-bottom: 2px;
     }
 
     /* GALLERY */
@@ -271,7 +168,7 @@
       letter-spacing: 0.28em;
       text-transform: lowercase;
       color: var(--text-dimmer);
-      margin-bottom: 32px;
+      margin-bottom: 28px;
       display: flex;
       align-items: center;
       gap: 16px;
@@ -296,7 +193,58 @@
     }
     .gallery-item:hover img { filter: brightness(1) saturate(1); transform: scale(1.03); }
 
-    /* NEXT WEDDING */
+    /* LIGHTBOX */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 9998;
+      background: rgba(10,8,5,0.96);
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+    .lightbox.active { display: flex; }
+    .lightbox-close {
+      position: absolute;
+      top: 28px; right: 40px;
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      color: var(--text-dimmer);
+      cursor: pointer;
+      text-transform: lowercase;
+      transition: color 0.2s;
+    }
+    .lightbox-close:hover { color: var(--yellow); }
+    .lightbox-prev, .lightbox-next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 20px;
+      color: var(--text-dimmer);
+      cursor: pointer;
+      padding: 20px;
+      transition: color 0.2s;
+      user-select: none;
+      z-index: 2;
+    }
+    .lightbox-prev { left: 20px; }
+    .lightbox-next { right: 20px; }
+    .lightbox-prev:hover, .lightbox-next:hover { color: var(--yellow); }
+    .lightbox-player {
+      width: 90vw;
+      max-width: 1200px;
+      aspect-ratio: 16/9;
+    }
+    .lightbox-title {
+      margin-top: 16px;
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: lowercase;
+      color: var(--text-dimmer);
+    }
+
+    /* NEXT */
     .next-wedding {
       padding: 48px 40px;
       border-top: 0.5px solid var(--border);
@@ -316,7 +264,7 @@
       align-items: center;
       gap: 16px;
     }
-    .next-link::after { content: '→'; font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--text-dimmer); transition: color 0.2s, transform 0.2s; }
+    .next-link::after { content: '→'; font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--text-dimmer); transition: color 0.2s, transform 0.2s; display: inline-block; }
     .next-link:hover { color: var(--yellow); }
     .next-link:hover::after { color: var(--yellow); transform: translateX(4px); }
 
@@ -333,15 +281,15 @@
 
     @media (max-width: 768px) {
       nav { padding: 18px 20px; }
-      .option-label { padding: 100px 20px 0; }
-      .wedding-header { padding: 20px 20px 40px; }
+      .wedding-header { padding: 90px 20px 40px; }
       .videos-section { padding: 40px 20px 0; }
       .videos-grid { grid-template-columns: 1fr; gap: 2px; }
       .gallery-section { padding: 60px 20px; }
       .gallery-grid { grid-template-columns: repeat(2, 1fr); }
       .next-wedding { padding: 40px 20px; flex-direction: column; gap: 16px; align-items: flex-start; }
-      footer { padding: 24px 20px; flex-direction: column; gap: 12px; }
-      .wedding-hero-content { padding: 0 20px 36px; }
+      footer { padding: 24px 20px; flex-direction: column; gap: 12px; text-align: center; }
+      .lightbox-prev { left: 8px; }
+      .lightbox-next { right: 8px; }
     }
   </style>
 </head>
@@ -352,144 +300,32 @@
     <a href="index.html" class="nav-back">all films</a>
   </nav>
 
-  <!-- ═══ OPTION A: NO HERO ═══ -->
-  <p class="option-label">— option a: no hero, direct content</p>
   <div class="wedding-header">
     <p class="wedding-eyebrow">— wedding film</p>
     <h1 class="wedding-title">Loreto <em>&</em> Raúl</h1>
     <p class="wedding-date">09 · 11 · 2024</p>
   </div>
 
-  <!-- VIDEOS -->
   <div class="videos-section">
-    <div class="videos-grid">
-
-      <div class="video-card" onclick="openLightbox('1065826221', 'film')">
-        <div class="video-thumb">
-          <img src="https://vumbnail.com/1065826221.jpg" alt="Film">
-          <div class="video-play"><div class="video-play-btn"></div></div>
-        </div>
-        <div class="video-label">
-          <strong>Film</strong>
-        </div>
-      </div>
-
-      <div class="video-card" onclick="openLightbox('1065837037', 'short film')">
-        <div class="video-thumb">
-          <img src="https://vumbnail.com/1065837037.jpg" alt="Short Film">
-          <div class="video-play"><div class="video-play-btn"></div></div>
-        </div>
-        <div class="video-label">
-          <strong>Short Film</strong>
-        </div>
-      </div>
-
-      <div class="video-card" onclick="openLightbox('1065832564', 'teaser')">
-        <div class="video-thumb">
-          <img src="https://vumbnail.com/1065832564.jpg" alt="Teaser">
-          <div class="video-play"><div class="video-play-btn"></div></div>
-        </div>
-        <div class="video-label">
-          <strong>Teaser</strong>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- GALLERY PLACEHOLDER -->
-  <div class="gallery-section">
-    <p class="gallery-label">stills</p>
-    <div class="gallery-grid">
-      <div class="gallery-item" onclick="openPhoto('img/LORETO 1.jpg')">
-        <img src="img/LORETO 1.jpg" alt="Loreto &amp; Raúl 1" loading="lazy">
-      </div>
-      <div class="gallery-item" onclick="openPhoto('img/LORETO 2.jpg')">
-        <img src="img/LORETO 2.jpg" alt="Loreto &amp; Raúl 2" loading="lazy">
-      </div>
-      <div class="gallery-item" onclick="openPhoto('img/LORETO 3.jpg')">
-        <img src="img/LORETO 3.jpg" alt="Loreto &amp; Raúl 3" loading="lazy">
-      </div>
-      <div class="gallery-item" onclick="openPhoto('img/LORETO 4.jpg')">
-        <img src="img/LORETO 4.jpg" alt="Loreto &amp; Raúl 4" loading="lazy">
-      </div>
-      <div class="gallery-item" onclick="openPhoto('img/LORETO 5.jpg')">
-        <img src="img/LORETO 5.jpg" alt="Loreto &amp; Raúl 5" loading="lazy">
-      </div>
-      <div class="gallery-item" onclick="openPhoto('img/LORETO 6.jpg')">
-        <img src="img/LORETO 6.jpg" alt="Loreto &amp; Raúl 6" loading="lazy">
-      </div>
-      <div class="gallery-item" onclick="openPhoto('img/LORETO 7.jpg')">
-        <img src="img/LORETO 7.jpg" alt="Loreto &amp; Raúl 7" loading="lazy">
-      </div>
-      <div class="gallery-item" onclick="openPhoto('img/LORETO 8.jpg')">
-        <img src="img/LORETO 8.jpg" alt="Loreto &amp; Raúl 8" loading="lazy">
-      </div>
-      <div class="gallery-item" onclick="openPhoto('img/LORETO 9.jpg')">
-        <img src="img/LORETO 9.jpg" alt="Loreto &amp; Raúl 9" loading="lazy">
-      </div>
-      <div class="gallery-item" onclick="openPhoto('img/LORETO 10.jpg')">
-        <img src="img/LORETO 10.jpg" alt="Loreto &amp; Raúl 10" loading="lazy">
-      </div>
-      <div class="gallery-item" onclick="openPhoto('img/LORETO 11.jpg')">
-        <img src="img/LORETO 11.jpg" alt="Loreto &amp; Raúl 11" loading="lazy">
-      </div>
-      <div class="gallery-item" onclick="openPhoto('img/LORETO 12.jpg')">
-        <img src="img/LORETO 12.jpg" alt="Loreto &amp; Raúl 12" loading="lazy">
-      </div>
-      <div class="gallery-item" onclick="openPhoto('img/LORETO 13.jpg')">
-        <img src="img/LORETO 13.jpg" alt="Loreto &amp; Raúl 13" loading="lazy">
-      </div>
-      <div class="gallery-item" onclick="openPhoto('img/LORETO 14.jpg')">
-        <img src="img/LORETO 14.jpg" alt="Loreto &amp; Raúl 14" loading="lazy">
-      </div>
-      <div class="gallery-item" onclick="openPhoto('img/LORETO 15.jpg')">
-        <img src="img/LORETO 15.jpg" alt="Loreto &amp; Raúl 15" loading="lazy">
-      </div>
-      <div class="gallery-item" onclick="openPhoto('img/LORETO 16.jpg')">
-        <img src="img/LORETO 16.jpg" alt="Loreto &amp; Raúl 16" loading="lazy">
-      </div>
-      <div class="gallery-item" onclick="openPhoto('img/LORETO 17.jpg')">
-        <img src="img/LORETO 17.jpg" alt="Loreto &amp; Raúl 17" loading="lazy">
-      </div>
-    </div>
-  </div>
-
-  <!-- ═══ OPTION B: WITH HERO IMAGE ═══ -->
-  <div class="option-divider">
-    <span class="option-label" style="padding:0; font-size:9px; letter-spacing:0.28em; color:var(--yellow); opacity:0.7;">— option b: with hero image</span>
-    <div class="option-divider-line"></div>
-  </div>
-
-  <div class="wedding-hero" style="margin-top:32px;">
-    <div class="wedding-hero-bg" style="background-image: url('PORTADA LORETOO Y RAUL.jpg');"></div>
-    <div class="wedding-hero-overlay"></div>
-    <div class="wedding-hero-content">
-      <p class="wedding-eyebrow">— wedding film</p>
-      <h2 class="wedding-title">Loreto <em>&</em> Raúl</h2>
-      <p class="wedding-date">09 · 11 · 2024</p>
-    </div>
-  </div>
-
-  <div class="videos-section" style="padding-top:48px;">
+    <p class="videos-label">films</p>
     <div class="videos-grid">
       <div class="video-card" onclick="openLightbox('1065826221', 'film')">
         <div class="video-thumb">
-          <img src="https://vumbnail.com/1065826221.jpg" alt="Film">
+          <img src="https://vumbnail.com/1065826221.jpg" alt="Film" loading="lazy">
           <div class="video-play"><div class="video-play-btn"></div></div>
         </div>
         <div class="video-label"><strong>Film</strong></div>
       </div>
       <div class="video-card" onclick="openLightbox('1065837037', 'short film')">
         <div class="video-thumb">
-          <img src="https://vumbnail.com/1065837037.jpg" alt="Short Film">
+          <img src="https://vumbnail.com/1065837037.jpg" alt="Short Film" loading="lazy">
           <div class="video-play"><div class="video-play-btn"></div></div>
         </div>
         <div class="video-label"><strong>Short Film</strong></div>
       </div>
       <div class="video-card" onclick="openLightbox('1065832564', 'teaser')">
         <div class="video-thumb">
-          <img src="https://vumbnail.com/1065832564.jpg" alt="Teaser">
+          <img src="https://vumbnail.com/1065832564.jpg" alt="Teaser" loading="lazy">
           <div class="video-play"><div class="video-play-btn"></div></div>
         </div>
         <div class="video-label"><strong>Teaser</strong></div>
@@ -497,7 +333,29 @@
     </div>
   </div>
 
-  <!-- NEXT WEDDING -->
+  <div class="gallery-section">
+    <p class="gallery-label">stills</p>
+    <div class="gallery-grid">
+      <div class="gallery-item" onclick="openPhoto(0)"><img src="img/LORETO 1.jpg" alt="Still 1" loading="lazy"></div>
+      <div class="gallery-item" onclick="openPhoto(1)"><img src="img/LORETO 2.jpg" alt="Still 2" loading="lazy"></div>
+      <div class="gallery-item" onclick="openPhoto(2)"><img src="img/LORETO 3.jpg" alt="Still 3" loading="lazy"></div>
+      <div class="gallery-item" onclick="openPhoto(3)"><img src="img/LORETO 4.jpg" alt="Still 4" loading="lazy"></div>
+      <div class="gallery-item" onclick="openPhoto(4)"><img src="img/LORETO 5.jpg" alt="Still 5" loading="lazy"></div>
+      <div class="gallery-item" onclick="openPhoto(5)"><img src="img/LORETO 6.jpg" alt="Still 6" loading="lazy"></div>
+      <div class="gallery-item" onclick="openPhoto(6)"><img src="img/LORETO 7.jpg" alt="Still 7" loading="lazy"></div>
+      <div class="gallery-item" onclick="openPhoto(7)"><img src="img/LORETO 8.jpg" alt="Still 8" loading="lazy"></div>
+      <div class="gallery-item" onclick="openPhoto(8)"><img src="img/LORETO 9.jpg" alt="Still 9" loading="lazy"></div>
+      <div class="gallery-item" onclick="openPhoto(9)"><img src="img/LORETO 10.jpg" alt="Still 10" loading="lazy"></div>
+      <div class="gallery-item" onclick="openPhoto(10)"><img src="img/LORETO 11.jpg" alt="Still 11" loading="lazy"></div>
+      <div class="gallery-item" onclick="openPhoto(11)"><img src="img/LORETO 12.jpg" alt="Still 12" loading="lazy"></div>
+      <div class="gallery-item" onclick="openPhoto(12)"><img src="img/LORETO 13.jpg" alt="Still 13" loading="lazy"></div>
+      <div class="gallery-item" onclick="openPhoto(13)"><img src="img/LORETO 14.jpg" alt="Still 14" loading="lazy"></div>
+      <div class="gallery-item" onclick="openPhoto(14)"><img src="img/LORETO 15.jpg" alt="Still 15" loading="lazy"></div>
+      <div class="gallery-item" onclick="openPhoto(15)"><img src="img/LORETO 16.jpg" alt="Still 16" loading="lazy"></div>
+      <div class="gallery-item" onclick="openPhoto(16)"><img src="img/LORETO 17.jpg" alt="Still 17" loading="lazy"></div>
+    </div>
+  </div>
+
   <div class="next-wedding">
     <span class="next-label">next film</span>
     <a href="laura-monchi.html" class="next-link">Laura & Monchi</a>
@@ -508,7 +366,6 @@
     <span class="footer-copy">© 2025 asttros</span>
   </footer>
 
-  <!-- LIGHTBOX -->
   <div class="lightbox" id="lightbox">
     <span class="lightbox-close" onclick="closeLightbox()">✕ close</span>
     <span class="lightbox-prev" onclick="prevPhoto()">←</span>
@@ -526,46 +383,56 @@
       'img/LORETO 17.jpg'
     ];
     let currentPhoto = -1;
+    let isVideo = false;
 
-    function openPhoto(src) {
-      currentPhoto = photos.indexOf(src);
-      showPhoto(currentPhoto);
+    function openPhoto(index) {
+      isVideo = false;
+      currentPhoto = index;
+      showPhoto(index);
       document.getElementById('lightbox').classList.add('active');
       document.body.style.overflow = 'hidden';
     }
 
     function showPhoto(index) {
-      const player = document.getElementById('lightbox-player');
-      player.innerHTML = '<img src="' + photos[index] + '" style="width:100%;height:100%;object-fit:contain;">';
+      document.getElementById('lightbox-player').innerHTML =
+        '<img src="' + photos[index] + '" style="width:100%;height:100%;object-fit:contain;">';
       document.getElementById('lightbox-title').textContent = (index + 1) + ' / ' + photos.length;
     }
 
     function prevPhoto() {
-      if (currentPhoto > 0) { currentPhoto--; showPhoto(currentPhoto); }
+      if (!isVideo && currentPhoto > 0) { currentPhoto--; showPhoto(currentPhoto); }
     }
 
     function nextPhoto() {
-      if (currentPhoto < photos.length - 1) { currentPhoto++; showPhoto(currentPhoto); }
+      if (!isVideo && currentPhoto < photos.length - 1) { currentPhoto++; showPhoto(currentPhoto); }
     }
 
     function openLightbox(id, title) {
-      document.getElementById('lightbox-player').innerHTML = '<iframe src="https://player.vimeo.com/video/' + id + '?autoplay=1&color=f5e642" allow="autoplay; fullscreen" allowfullscreen style="width:100%;height:100%;border:none;"></iframe>';
+      isVideo = true;
+      currentPhoto = -1;
+      document.getElementById('lightbox-player').innerHTML =
+        '<iframe src="https://player.vimeo.com/video/' + id + '?autoplay=1&color=f5e642" allow="autoplay; fullscreen" allowfullscreen style="width:100%;height:100%;border:none;"></iframe>';
       document.getElementById('lightbox-title').textContent = 'loreto & raúl — ' + title;
       document.getElementById('lightbox').classList.add('active');
       document.body.style.overflow = 'hidden';
     }
+
     function closeLightbox() {
       document.getElementById('lightbox-player').innerHTML = '';
       document.getElementById('lightbox').classList.remove('active');
       document.body.style.overflow = '';
+      currentPhoto = -1;
+      isVideo = false;
     }
+
     document.getElementById('lightbox').addEventListener('click', function(e) {
       if (e.target === this) closeLightbox();
     });
+
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape') closeLightbox();
-      if (e.key === 'ArrowRight' && currentPhoto >= 0) nextPhoto();
-      if (e.key === 'ArrowLeft' && currentPhoto >= 0) prevPhoto();
+      if (e.key === 'ArrowRight') nextPhoto();
+      if (e.key === 'ArrowLeft') prevPhoto();
     });
   </script>
 
