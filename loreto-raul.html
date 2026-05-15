@@ -95,9 +95,8 @@
 
     .videos-grid {
       display: grid;
-      grid-template-columns: 2fr 1fr;
+      grid-template-columns: repeat(3, 1fr);
       gap: 3px;
-      align-items: start;
     }
     .video-card {
       position: relative;
@@ -189,7 +188,7 @@
     .gallery-item img {
       width: 100%; height: 100%;
       object-fit: cover;
-      filter: brightness(0.85) saturate(0.9);
+      filter: brightness(0.93) saturate(0.95);
       transition: filter 0.3s, transform 0.5s;
     }
     .gallery-item:hover img { filter: brightness(1) saturate(1); transform: scale(1.03); }
@@ -310,6 +309,13 @@
   <div class="videos-section">
     <p class="videos-label">films</p>
     <div class="videos-grid">
+      <div class="video-card" onclick="openLightbox('1065826221', 'film')">
+        <div class="video-thumb">
+          <img src="https://vumbnail.com/1065826221.jpg" alt="Film" loading="lazy">
+          <div class="video-play"><div class="video-play-btn"></div></div>
+        </div>
+        <div class="video-label"><strong>Film</strong></div>
+      </div>
       <div class="video-card" onclick="openLightbox('1065837037', 'short film')">
         <div class="video-thumb">
           <img src="https://vumbnail.com/1065837037.jpg" alt="Short Film" loading="lazy">
