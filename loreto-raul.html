@@ -95,8 +95,9 @@
 
     .videos-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: 2fr 1fr;
       gap: 3px;
+      align-items: start;
     }
     .video-card {
       position: relative;
@@ -309,13 +310,6 @@
   <div class="videos-section">
     <p class="videos-label">films</p>
     <div class="videos-grid">
-      <div class="video-card" onclick="openLightbox('1065826221', 'film')">
-        <div class="video-thumb">
-          <img src="https://vumbnail.com/1065826221.jpg" alt="Film" loading="lazy">
-          <div class="video-play"><div class="video-play-btn"></div></div>
-        </div>
-        <div class="video-label"><strong>Film</strong></div>
-      </div>
       <div class="video-card" onclick="openLightbox('1065837037', 'short film')">
         <div class="video-thumb">
           <img src="https://vumbnail.com/1065837037.jpg" alt="Short Film" loading="lazy">
