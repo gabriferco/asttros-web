@@ -137,14 +137,14 @@
     <div class="videos-grid">
       <div class="video-card" onclick="openLightbox('1139993597', 'film')">
         <div class="video-thumb">
-          <img src="https://vumbnail.com/1139993597.jpg" alt="Film" loading="lazy">
+          <img data-vimeo-id="1139993597" src="" alt="Film" loading="lazy" style="background:#111;">
           <div class="video-play"><div class="video-play-btn"></div></div>
         </div>
         <div class="video-label"><strong>Film</strong></div>
       </div>
       <div class="video-card" onclick="openLightbox('1139991616', 'teaser')">
         <div class="video-thumb">
-          <img src="https://vumbnail.com/1139991616.jpg" alt="Teaser" loading="lazy">
+          <img data-vimeo-id="1139991616" src="" alt="Teaser" loading="lazy" style="background:#111;">
           <div class="video-play"><div class="video-play-btn"></div></div>
         </div>
         <div class="video-label"><strong>Teaser</strong></div>
@@ -211,6 +211,22 @@
 
   <script>
     document.addEventListener('contextmenu', function(e) { if (e.target.tagName === 'IMG') e.preventDefault(); });
+
+    // Fetch thumbnails directly from Vimeo API
+    document.querySelectorAll('img[data-vimeo-id]').forEach(function(img) {
+      const id = img.getAttribute('data-vimeo-id');
+      fetch('https://vimeo.com/api/v2/video/' + id + '.json')
+        .then(r => r.json())
+        .then(data => {
+          if (data && data[0]) {
+            img.src = data[0].thumbnail_large;
+          }
+        })
+        .catch(() => {
+          img.src = 'https://vumbnail.com/' + id + '.jpg';
+        });
+    });
+
     // iOS long press protection
     document.addEventListener('touchstart', function(e) {
       if (e.target.tagName === 'IMG') {
