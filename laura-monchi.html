@@ -241,8 +241,12 @@
     }
 
     function showPhoto(index) {
-      document.getElementById('lightbox-player').innerHTML =
-        '<img src="' + photos[index] + '" style="width:100%;height:100%;object-fit:contain;">';
+      const player = document.getElementById('lightbox-player');
+      player.style.backgroundImage = 'url("' + photos[index] + '")';
+      player.style.backgroundSize = 'contain';
+      player.style.backgroundRepeat = 'no-repeat';
+      player.style.backgroundPosition = 'center';
+      player.innerHTML = '';
       document.getElementById('lightbox-title').textContent = (index + 1) + ' / ' + photos.length;
     }
 
