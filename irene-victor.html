@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en" translate="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Irene & Víctor — asttros</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400&family=Cormorant+Garamond:ital,wght@0,300;1,300&display=swap" rel="stylesheet">
+  <style>
+    @font-face {
+      font-family: 'Altone';
+      src: url('Altone-Bold.ttf') format('truetype');
+      font-weight: 700;
+    }
+    :root {
+      --yellow: #f5e642;
+      --dark: #0a0805;
+      --text: #f0ece4;
+      --text-dim: rgba(240,236,228,0.6);
+      --text-dimmer: rgba(240,236,228,0.45);
+      --border: rgba(240,236,228,0.1);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { background: var(--dark); color: var(--text); font-family: 'DM Sans', sans-serif; font-weight: 300; overflow-x: hidden; }
+    body::after { content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 9999; opacity: 0.032; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); background-size: 180px; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 24px 40px; display: flex; justify-content: space-between; align-items: center; background: rgba(10,8,5,0.88); backdrop-filter: blur(10px); border-bottom: 0.5px solid var(--border); }
+    .logo { font-family: 'Altone', sans-serif; font-size: 17px; font-weight: 700; color: var(--text); text-decoration: none; text-transform: lowercase; letter-spacing: 0.04em; }
+    .nav-back { font-size: 10px; letter-spacing: 0.2em; color: var(--text-dimmer); text-decoration: none; text-transform: lowercase; transition: color 0.2s; display: flex; align-items: center; gap: 10px; }
+    .nav-back::before { content: ''; display: inline-block; width: 28px; height: 0.5px; background: currentColor; transition: width 0.3s; }
+    .nav-back:hover { color: var(--yellow); }
+    .nav-back:hover::before { width: 16px; }
+    .wedding-header { padding: 110px 40px 56px; border-bottom: 0.5px solid var(--border); }
+    .wedding-eyebrow { font-size: 9px; letter-spacing: 0.28em; text-transform: lowercase; color: var(--text-dimmer); margin-bottom: 12px; }
+    .wedding-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(48px, 6vw, 80px); font-weight: 300; line-height: 1.0; color: var(--text); }
+    .wedding-title em { font-style: italic; color: var(--text-dim); }
+    .videos-section { padding: 56px 40px 0; }
+    .videos-label { font-size: 9px; letter-spacing: 0.28em; text-transform: lowercase; color: var(--text-dimmer); margin-bottom: 28px; display: flex; align-items: center; gap: 16px; }
+    .videos-label::after { content: ''; flex: 1; height: 0.5px; background: var(--border); }
+    .videos-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; }
+    .video-card { position: relative; cursor: pointer; background: #111; overflow: hidden; }
+    .video-thumb { aspect-ratio: 16/9; position: relative; overflow: hidden; }
+    .video-thumb img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.88); transition: filter 0.3s, transform 0.5s; }
+    .video-card:hover .video-thumb img { filter: brightness(0.65); transform: scale(1.03); }
+    .video-play { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; z-index: 2; }
+    .video-play-btn { width: 52px; height: 52px; border: 0.5px solid rgba(240,236,228,0.5); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: border-color 0.2s, background 0.2s; }
+    .video-card:hover .video-play-btn { border-color: var(--yellow); background: rgba(245,230,66,0.1); }
+    .video-play-btn::after { content: ''; width: 0; height: 0; border-top: 7px solid transparent; border-bottom: 7px solid transparent; border-left: 12px solid rgba(240,236,228,0.8); margin-left: 3px; transition: border-left-color 0.2s; }
+    .video-card:hover .video-play-btn::after { border-left-color: var(--yellow); }
+    .video-label { padding: 14px 16px; font-size: 9px; letter-spacing: 0.22em; text-transform: lowercase; color: var(--text-dimmer); }
+    .video-label strong { display: block; font-size: 13px; letter-spacing: 0.05em; color: var(--text); font-family: 'Cormorant Garamond', serif; font-weight: 300; margin-bottom: 2px; }
+    .gallery-section { padding: 80px 40px 96px; }
+    .gallery-label { font-size: 9px; letter-spacing: 0.28em; text-transform: lowercase; color: var(--text-dimmer); margin-bottom: 28px; display: flex; align-items: center; gap: 16px; }
+    .gallery-label::after { content: ''; flex: 1; height: 0.5px; background: var(--border); }
+    .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; }
+    .gallery-item { aspect-ratio: 16/9; overflow: hidden; cursor: pointer; background: #111; position: relative; }
+    .gallery-item::after { content: ''; position: absolute; inset: 0; z-index: 1; }
+    .gallery-item img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.93) saturate(0.95); transition: filter 0.3s, transform 0.5s; -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
+    .gallery-item:hover img { filter: brightness(1) saturate(1); transform: scale(1.03); }
+    .lightbox { display: none; position: fixed; inset: 0; z-index: 9998; background: rgba(10,8,5,0.96); align-items: center; justify-content: center; flex-direction: column; }
+    .lightbox.active { display: flex; }
+    .lightbox-close { position: absolute; top: 28px; right: 40px; font-size: 10px; letter-spacing: 0.22em; color: var(--text-dimmer); cursor: pointer; text-transform: lowercase; transition: color 0.2s; }
+    .lightbox-close:hover { color: var(--yellow); }
+    .lightbox-prev, .lightbox-next { position: absolute; top: 50%; transform: translateY(-50%); font-size: 20px; color: var(--text-dimmer); cursor: pointer; padding: 20px; transition: color 0.2s; user-select: none; z-index: 2; }
+    .lightbox-prev { left: 20px; }
+    .lightbox-next { right: 20px; }
+    .lightbox-prev:hover, .lightbox-next:hover { color: var(--yellow); }
+    .lightbox-player { width: 90vw; max-width: 1200px; aspect-ratio: 16/9; }
+    .lightbox-title { margin-top: 16px; font-size: 10px; letter-spacing: 0.22em; text-transform: lowercase; color: var(--text-dimmer); }
+    .next-wedding { padding: 48px 40px; border-top: 0.5px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+    .next-label { font-size: 9px; letter-spacing: 0.24em; text-transform: lowercase; color: var(--text-dimmer); }
+    .next-link { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 300; color: var(--text); text-decoration: none; transition: color 0.2s; display: flex; align-items: center; gap: 16px; }
+    .next-link::after { content: '→'; font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--text-dimmer); transition: color 0.2s, transform 0.2s; display: inline-block; }
+    .next-link:hover { color: var(--yellow); }
+    .next-link:hover::after { color: var(--yellow); transform: translateX(4px); }
+    footer { padding: 28px 40px; border-top: 0.5px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+    .footer-logo { font-family: 'Altone', sans-serif; font-size: 13px; font-weight: 700; color: var(--text-dimmer); text-transform: lowercase; letter-spacing: 0.04em; }
+    .footer-copy { font-size: 10px; letter-spacing: 0.12em; color: rgba(240,236,228,0.2); }
+    @media (max-width: 768px) {
+      nav { padding: 18px 20px; }
+      .wedding-header { padding: 90px 20px 40px; }
+      .videos-section { padding: 40px 20px 0; }
+      .videos-grid { grid-template-columns: 1fr; gap: 2px; }
+      .gallery-section { padding: 60px 20px; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+      .next-wedding { padding: 40px 20px; flex-direction: column; gap: 16px; align-items: flex-start; }
+      footer { padding: 24px 20px; flex-direction: column; gap: 12px; text-align: center; }
+      .lightbox-prev { left: 8px; }
+      .lightbox-next { right: 8px; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="index.html" class="logo">asttros</a>
+    <a href="index.html" class="nav-back">all films</a>
+  </nav>
+
+  <div class="wedding-header">
+    <p class="wedding-eyebrow">— wedding film</p>
+    <h1 class="wedding-title">Irene <em>&</em> Víctor</h1>
+  </div>
+
+  <div class="videos-section">
+    <p class="videos-label">films</p>
+    <div class="videos-grid">
+      <div class="video-card" onclick="openLightbox('991765038', 'film')">
+        <div class="video-thumb">
+          <img src="https://vumbnail.com/991765038.jpg" alt="Film" loading="lazy">
+          <div class="video-play"><div class="video-play-btn"></div></div>
+        </div>
+        <div class="video-label"><strong>Film</strong></div>
+      </div>
+      <div class="video-card" onclick="openLightbox('992221854', 'short film')">
+        <div class="video-thumb">
+          <img src="https://vumbnail.com/992221854.jpg" alt="Short Film" loading="lazy">
+          <div class="video-play"><div class="video-play-btn"></div></div>
+        </div>
+        <div class="video-label"><strong>Short Film</strong></div>
+      </div>
+      <div class="video-card" onclick="openLightbox('992239170', 'teaser')">
+        <div class="video-thumb">
+          <img src="https://vumbnail.com/992239170.jpg" alt="Teaser" loading="lazy">
+          <div class="video-play"><div class="video-play-btn"></div></div>
+        </div>
+        <div class="video-label"><strong>Teaser</strong></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="gallery-section">
+    <p class="gallery-label">stills</p>
+    <div class="gallery-grid">
+      <div class="gallery-item" onclick="openPhoto(0)"><img src="img-irene-victor/IRENE Y VICTOR 1.jpg" alt="Still 1" loading="lazy"></div>
+      <div class="gallery-item" onclick="openPhoto(1)"><img src="img-irene-victor/IRENE Y VICTOR 2.jpg" alt="Still 2" loading="lazy"></div>
+      <div class="gallery-item" onclick="openPhoto(2)"><img src="img-irene-victor/IRENE Y VICTOR 3.jpg" alt="Still 3" loading="lazy"></div>
+      <div class="gallery-item" onclick="openPhoto(3)"><img src="img-irene-victor/IRENE Y VICTOR 4.jpg" alt="Still 4" loading="lazy"></div>
+      <div class="gallery-item" onclick="openPhoto(4)"><img src="img-irene-victor/IRENE Y VICTOR 5.jpg" alt="Still 5" loading="lazy"></div>
+      <div class="gallery-item" onclick="openPhoto(5)"><img src="img-irene-victor/IRENE Y VICTOR 6.jpg" alt="Still 6" loading="lazy"></div>
+      <div class="gallery-item" onclick="openPhoto(6)"><img src="img-irene-victor/IRENE Y VICTOR 7.jpg" alt="Still 7" loading="lazy"></div>
+      <div class="gallery-item" onclick="openPhoto(7)"><img src="img-irene-victor/IRENE Y VICTOR 8.jpg" alt="Still 8" loading="lazy"></div>
+      <div class="gallery-item" onclick="openPhoto(8)"><img src="img-irene-victor/IRENE Y VICTOR 9.jpg" alt="Still 9" loading="lazy"></div>
+      <div class="gallery-item" onclick="openPhoto(9)"><img src="img-irene-victor/IRENE Y VICTOR 10.jpg" alt="Still 10" loading="lazy"></div>
+      <div class="gallery-item" onclick="openPhoto(10)"><img src="img-irene-victor/IRENE Y VICTOR 11.jpg" alt="Still 11" loading="lazy"></div>
+      <div class="gallery-item" onclick="openPhoto(11)"><img src="img-irene-victor/IRENE Y VICTOR 12.jpg" alt="Still 12" loading="lazy"></div>
+      <div class="gallery-item" onclick="openPhoto(12)"><img src="img-irene-victor/IRENE Y VICTOR 13.jpg" alt="Still 13" loading="lazy"></div>
+      <div class="gallery-item" onclick="openPhoto(13)"><img src="img-irene-victor/IRENE Y VICTOR 14.jpg" alt="Still 14" loading="lazy"></div>
+      <div class="gallery-item" onclick="openPhoto(14)"><img src="img-irene-victor/IRENE Y VICTOR 15.jpg" alt="Still 15" loading="lazy"></div>
+      <div class="gallery-item" onclick="openPhoto(15)"><img src="img-irene-victor/IRENE Y VICTOR 16.jpg" alt="Still 16" loading="lazy"></div>
+      <div class="gallery-item" onclick="openPhoto(16)"><img src="img-irene-victor/IRENE Y VICTOR 17.jpg" alt="Still 17" loading="lazy"></div>
+      <div class="gallery-item" onclick="openPhoto(17)"><img src="img-irene-victor/IRENE Y VICTOR 18.jpg" alt="Still 18" loading="lazy"></div>
+      <div class="gallery-item" onclick="openPhoto(18)"><img src="img-irene-victor/IRENE Y VICTOR 19.jpg" alt="Still 19" loading="lazy"></div>
+      <div class="gallery-item" onclick="openPhoto(19)"><img src="img-irene-victor/IRENE Y VICTOR 20.jpg" alt="Still 20" loading="lazy"></div>
+      <div class="gallery-item" onclick="openPhoto(20)"><img src="img-irene-victor/IRENE Y VICTOR 21.jpg" alt="Still 21" loading="lazy"></div>
+      <div class="gallery-item" onclick="openPhoto(21)"><img src="img-irene-victor/IRENE Y VICTOR 22.jpg" alt="Still 22" loading="lazy"></div>
+      <div class="gallery-item" onclick="openPhoto(22)"><img src="img-irene-victor/IRENE Y VICTOR 23.jpg" alt="Still 23" loading="lazy"></div>
+      <div class="gallery-item" onclick="openPhoto(23)"><img src="img-irene-victor/IRENE Y VICTOR 24.jpg" alt="Still 24" loading="lazy"></div>
+      <div class="gallery-item" onclick="openPhoto(24)"><img src="img-irene-victor/IRENE Y VICTOR 25.jpg" alt="Still 25" loading="lazy"></div>
+      <div class="gallery-item" onclick="openPhoto(25)"><img src="img-irene-victor/IRENE Y VICTOR 26.jpg" alt="Still 26" loading="lazy"></div>
+      <div class="gallery-item" onclick="openPhoto(26)"><img src="img-irene-victor/IRENE Y VICTOR 27.jpg" alt="Still 27" loading="lazy"></div>
+      <div class="gallery-item" onclick="openPhoto(27)"><img src="img-irene-victor/IRENE Y VICTOR 28.jpg" alt="Still 28" loading="lazy"></div>
+      <div class="gallery-item" onclick="openPhoto(28)"><img src="img-irene-victor/IRENE Y VICTOR 29.jpg" alt="Still 29" loading="lazy"></div>
+      <div class="gallery-item" onclick="openPhoto(29)"><img src="img-irene-victor/IRENE Y VICTOR 30.jpg" alt="Still 30" loading="lazy"></div>
+      <div class="gallery-item" onclick="openPhoto(30)"><img src="img-irene-victor/IRENE Y VICTOR 31.jpg" alt="Still 31" loading="lazy"></div>
+      <div class="gallery-item" onclick="openPhoto(31)"><img src="img-irene-victor/IRENE Y VICTOR 32.jpg" alt="Still 32" loading="lazy"></div>
+      <div class="gallery-item" onclick="openPhoto(32)"><img src="img-irene-victor/IRENE Y VICTOR 33.jpg" alt="Still 33" loading="lazy"></div>
+      <div class="gallery-item" onclick="openPhoto(33)"><img src="img-irene-victor/IRENE Y VICTOR 34.jpg" alt="Still 34" loading="lazy"></div>
+    </div>
+  </div>
+
+  <div class="next-wedding">
+    <span class="next-label">next film</span>
+    <a href="sofia-mario.html" class="next-link">Sofía & Mario</a>
+  </div>
+
+  <footer>
+    <span class="footer-logo">asttros</span>
+    <a href="contact.html" style="font-size:10px; letter-spacing:0.22em; color:rgba(240,236,228,0.35); text-decoration:none; text-transform:lowercase; transition:color 0.2s;" onmouseover="this.style.color='#f5e642'" onmouseout="this.style.color='rgba(240,236,228,0.35)'">— get in touch</a>
+    <span class="footer-copy">© 2025 asttros</span>
+  </footer>
+
+  <div class="lightbox" id="lightbox">
+    <span class="lightbox-close" onclick="closeLightbox()">✕ close</span>
+    <span class="lightbox-prev" onclick="prevPhoto()">←</span>
+    <span class="lightbox-next" onclick="nextPhoto()">→</span>
+    <div class="lightbox-player" id="lightbox-player"></div>
+    <p class="lightbox-title" id="lightbox-title"></p>
+  </div>
+
+  <script>
+    document.addEventListener('contextmenu', function(e) { if (e.target.tagName === 'IMG') e.preventDefault(); });
+    document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'IMG') e.preventDefault(); });
+    document.addEventListener('touchstart', function(e) { if (e.target.tagName === 'IMG') e.preventDefault(); }, { passive: false });
+
+    const photos = Array.from({length: 34}, (_, i) => `img-irene-victor/IRENE Y VICTOR ${i+1}.jpg`);
+    let currentPhoto = -1;
+    let isVideo = false;
+
+    function openPhoto(index) {
+      isVideo = false;
+      currentPhoto = index;
+      const player = document.getElementById('lightbox-player');
+      player.style.backgroundImage = 'url("' + photos[index] + '")';
+      player.style.backgroundSize = 'contain';
+      player.style.backgroundRepeat = 'no-repeat';
+      player.style.backgroundPosition = 'center';
+      player.innerHTML = '';
+      document.getElementById('lightbox-title').textContent = (index + 1) + ' / ' + photos.length;
+      document.getElementById('lightbox').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function prevPhoto() { if (!isVideo && currentPhoto > 0) { currentPhoto--; openPhoto(currentPhoto); } }
+    function nextPhoto() { if (!isVideo && currentPhoto < photos.length - 1) { currentPhoto++; openPhoto(currentPhoto); } }
+
+    function openLightbox(id, title) {
+      isVideo = true;
+      currentPhoto = -1;
+      document.getElementById('lightbox-player').style.backgroundImage = 'none';
+      document.getElementById('lightbox-player').innerHTML =
+        '<iframe src="https://player.vimeo.com/video/' + id + '?autoplay=1&color=f5e642&pip=0&transcript=0&portrait=0&byline=0&title=0" allow="autoplay; fullscreen" allowfullscreen style="width:100%;height:100%;border:none;"></iframe>';
+      document.getElementById('lightbox-title').textContent = 'irene & víctor — ' + title;
+      document.getElementById('lightbox').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      const player = document.getElementById('lightbox-player');
+      player.innerHTML = '';
+      player.style.backgroundImage = 'none';
+      document.getElementById('lightbox').classList.remove('active');
+      document.body.style.overflow = '';
+      currentPhoto = -1;
+      isVideo = false;
+    }
+
+    document.getElementById('lightbox').addEventListener('click', function(e) { if (e.target === this) closeLightbox(); });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowRight') nextPhoto();
+      if (e.key === 'ArrowLeft') prevPhoto();
+    });
+  </script>
+</body>
+</html>
